@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Security>
+  <Templates>
+    <Template name="user">
+      <groups>
+        <group>User</group>
+      </groups>
+    </Template>
+    <Template name="admin">
+      <groups>
+        <group>Admin</group>
+      </groups>
+    </Template>
+    <Template name="main" templates="user">
+      <key>${id}</key>
+      <displayName>${lastName}, ${firstName}</displayName>
+      <emailAddress>${firstName}.${lastName}@qq.com</emailAddress>
+    </Template>
+
+    <Template name="expand-info" templates="main">
+      <node1>XX</node1>
+      <node2>XX</node2>
+    </Template>
+  </Templates>
+  <Users>
+    <User name="test1" password="xxx">
+      <Identity templates="expand-info">
+        <id>0123456789</id>
+        <firstName>test1</firstName>
+        <lastName>test1</lastName>
+      </Identity>
+    </User>
+    <User name="test2" password="xxx">
+      <Identity templates="expand-info;admin">
+        <id>1123456789</id>
+        <firstName>test2</firstName>
+        <lastName>test2</lastName>
+      </Identity>
+    </User>
+  </Users>
+</Security>
